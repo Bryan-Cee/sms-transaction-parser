@@ -1,8 +1,23 @@
 {
   "version": "0.1.0",
   "license": "MIT",
+  "description": "Parse SMS for transactions to extract relevant information.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "keywords": [
+    "typescript",
+    "sms-parser",
+    "sms-transaction-parser",
+    "personal finance"
+  ],
+  "homepage": "https://github.com/Bryan-Cee/sms-transaction-parser#readme",
+  "bugs": {
+    "url": "https://github.com/Bryan-Cee/sms-transaction-parser/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bryan-Cee/sms-transaction-parser.git"
+  },
   "files": [
     "dist",
     "src"
