@@ -16,7 +16,7 @@ type TransactionTypeWithRegex = {
   regex: RegExp;
 }
 
-type TransferredMshwari = {
+type TransferredMShwari = {
   reference: string;
   amount: string;
   transactionType: 'transferred';
@@ -43,14 +43,14 @@ type Withdraw = {
   reference: string;
   date: string;
   time: string;
-  transactionType: "Withdraw";
+  transactionType: 'Withdraw';
   amount: string;
   agent: string;
   balance: string;
   transactionCost: string;
 }
 
-export type ParsedMessage = (TransferredMshwari | SentTo | Withdraw) & { type: TransactionType };
+export type ParsedMessage = (TransferredMShwari | SentTo | Withdraw) & { type: TransactionType };
 
 export const transactionTypeWithPattern: TransactionTypeWithRegex[] = [
   {
@@ -97,7 +97,7 @@ export function getTransactionType(message: string): TransactionTypeWithRegex | 
   return null;
 };
 
-export function parseMessage(message: string): ParsedMessage | {} {
+export function parseMessage(message: string): ParsedMessage | { type: TransactionType } {
   const transactionType = getTransactionType(message);
   if (!transactionType) return { type: TransactionType.NoTransactionType };
 
