@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "Parse SMS for transactions to extract relevant information.",
   "main": "dist/index.js",
