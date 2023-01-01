@@ -39,6 +39,17 @@ type SentTo = {
   transactionCost: string;
 }
 
+type PaidTo = {
+  reference: string;
+  amount: string;
+  transactionType: 'paid';
+  recipient: string;
+  date: string;
+  time: string;
+  balance: string;
+  transactionCost: string;
+}
+
 type Withdraw = {
   reference: string;
   date: string;
@@ -50,7 +61,7 @@ type Withdraw = {
   transactionCost: string;
 }
 
-export type ParsedMessage = (TransferredMShwari | SentTo | Withdraw) & { type: TransactionType };
+export type ParsedMessage = TransferredMShwari | SentTo | Withdraw | PaidTo;
 export type FailedParsing = { type: TransactionType.NoMatch } | { type: TransactionType.NoResult } | { type: TransactionType.NoTransactionType };
 
 export const transactionTypeWithPattern: TransactionTypeWithRegex[] = [
