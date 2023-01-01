@@ -51,6 +51,7 @@ type Withdraw = {
 }
 
 export type ParsedMessage = (TransferredMShwari | SentTo | Withdraw) & { type: TransactionType };
+export type FailedParsing = { type: TransactionType.NoMatch } | { type: TransactionType.NoResult } | { type: TransactionType.NoTransactionType };
 
 export const transactionTypeWithPattern: TransactionTypeWithRegex[] = [
   {
@@ -97,7 +98,7 @@ export function getTransactionType(message: string): TransactionTypeWithRegex | 
   return null;
 };
 
-export function parseMessage(message: string): ParsedMessage | { type: TransactionType } {
+export function parseMessage(message: string): ParsedMessage | FailedParsing {
   const transactionType = getTransactionType(message);
   if (!transactionType) return { type: TransactionType.NoTransactionType };
 
