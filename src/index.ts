@@ -98,10 +98,10 @@ export function getTransactionType(message: string): TransactionTypeWithRegex | 
 
 export function parseMessage(message: string): ParsedMessage | {} {
   const transactionType = getTransactionType(message);
-  if (!transactionType) return { type: TransactionType.NoMatch };
+  if (!transactionType) return { type: TransactionType.NoTransactionType };
 
   const matched = transactionType.regex.exec(message);
-  if (!matched) return { type: TransactionType.NoTransactionType };
+  if (!matched) return { type: TransactionType.NoMatch };
 
   const result = matched.groups as ParsedMessage;
   if (Object.keys(result).length === 0) {
