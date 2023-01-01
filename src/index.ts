@@ -16,7 +16,7 @@ type TransactionTypeWithRegex = {
   regex: RegExp;
 }
 
-type TransferredMShwari = {
+export type TransferredMShwari = {
   reference: string;
   amount: string;
   transactionType: 'transferred';
@@ -28,7 +28,7 @@ type TransferredMShwari = {
   transactionCost: string;
 }
 
-type SentTo = {
+export type SentTo = {
   reference: string;
   amount: string;
   transactionType: 'sent';
@@ -39,7 +39,7 @@ type SentTo = {
   transactionCost: string;
 }
 
-type PaidTo = {
+export type PaidTo = {
   reference: string;
   amount: string;
   transactionType: 'paid';
@@ -50,7 +50,7 @@ type PaidTo = {
   transactionCost: string;
 }
 
-type Withdraw = {
+export type Withdraw = {
   reference: string;
   date: string;
   time: string;
