@@ -5,6 +5,9 @@ const enum TransactionType {
   MShwariWithdraw = "M-SHWARI-WITHDRAW",
   MPesaWithdraw = "M-PESA-WITHDRAW",
   MPesaDeposit = "M-PESA-DEPOSIT",
+  NoMatch = "NO-MATCH",
+  NoTransactionType = "NO-TRANSACTION-TYPE",
+  NoResult = "NO-RESULT"
 }
 
 type TransactionTypeWithRegex = {
@@ -95,14 +98,14 @@ export function getTransactionType(message: string): TransactionTypeWithRegex | 
 
 export function parseMessage(message: string): ParsedMessage | {} {
   const transactionType = getTransactionType(message);
-  if (!transactionType) return {};
+  if (!transactionType) return { type: TransactionType.NoMatch };
 
   const matched = transactionType.regex.exec(message);
-  if (!matched) return {};
+  if (!matched) return { type: TransactionType.NoTransactionType };
 
   const result = matched.groups as ParsedMessage;
   if (Object.keys(result).length === 0) {
-    return {};
+    return { type: TransactionType.NoResult };
   }
 
   const parsedResult = { ...result, type: transactionType.type };
