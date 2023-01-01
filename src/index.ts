@@ -65,7 +65,7 @@ export const transactionTypeWithPattern: TransactionTypeWithRegex[] = [
   {
     type: TransactionType.MPesaWithdraw,
     keyPhrase: 'Withdraw',
-    regex: /(?<reference>[A-Z0-9]+)(?: Confirmed\.)on (?<date>\d{2}\/\d{2}\/\d{2}) at (?<time>\d{1,2}:\d{2} [AP]M)Withdraw Ksh(?<withdraw>[\d,]+.\d{2}) from (?<agent>.+) New M-PESA balance is Ksh(?<balance>[\d,]+.\d{2}).+Transaction cost(?:, )?Ksh(?:\s|\S)(?<transactionCost>[\d,]+.\d{2})/,
+    regex: /(?<reference>[A-Z0-9]+)(?: Confirmed\.)on (?<date>\d{2}\/\d{2}\/\d{2}) at (?<time>\d{1,2}:\d{2} [AP]M)(?<transactionType>Withdraw) Ksh(?<withdraw>[\d,]+.\d{2}) from (?<agent>.+) New M-PESA balance is Ksh(?<balance>[\d,]+.\d{2}).+Transaction cost(?:, )?Ksh(?:\s|\S)(?<transactionCost>[\d,]+.\d{2})/,
   },
   {
     type: TransactionType.MShwariDeposit,
