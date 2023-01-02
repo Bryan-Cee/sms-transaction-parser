@@ -61,7 +61,11 @@ export type MPesaWithdraw = {
   transactionCost: string;
 };
 
-export type ParsedMessage = MShwariTransferredToMPesa | MPeseSentTo | MPesaWithdraw | MPesaPaidTo;
+export type ParsedMessage =
+  | MShwariTransferredToMPesa
+  | MPeseSentTo
+  | MPesaWithdraw
+  | MPesaPaidTo;
 export type FailedParsing =
   | { type: TransactionType.NoMatch }
   | { type: TransactionType.NoResult }
