@@ -5,6 +5,9 @@ export const enum TransactionType {
   MShwariWithdraw = 'M-SHWARI-WITHDRAW',
   MPesaWithdraw = 'M-PESA-WITHDRAW',
   MPesaDeposit = 'M-PESA-DEPOSIT',
+}
+
+export const enum FailedParsing {
   NoMatch = 'NO-MATCH',
   NoTransactionType = 'NO-TRANSACTION-TYPE',
   NoResult = 'NO-RESULT',
@@ -26,6 +29,7 @@ export type MShwariTransferredToMPesa = {
   mShwariBalance: string;
   balance: string;
   transactionCost: string;
+  type: TransactionType;
 };
 
 export type MPeseSentTo = {
@@ -37,6 +41,7 @@ export type MPeseSentTo = {
   time: string;
   balance: string;
   transactionCost: string;
+  type: TransactionType.MPesaSentTo;
 };
 
 export type MPesaPaidTo = {
@@ -48,6 +53,7 @@ export type MPesaPaidTo = {
   time: string;
   balance: string;
   transactionCost: string;
+  type: TransactionType.MPesaPaidTo;
 };
 
 export type MPesaWithdraw = {
@@ -59,14 +65,28 @@ export type MPesaWithdraw = {
   agent: string;
   balance: string;
   transactionCost: string;
+  type: TransactionType.MPesaWithdraw;
+};
+
+export type MPesaDeposit = {
+  reference: string;
+  date: string;
+  time: string;
+  transactionType: 'received';
+  amount: string;
+  balance: string;
+  sender: string;
+  type: TransactionType.MPesaDeposit;
 };
 
 export type ParsedMessage =
   | MShwariTransferredToMPesa
   | MPeseSentTo
   | MPesaWithdraw
-  | MPesaPaidTo;
-export type FailedParsing =
-  | { type: TransactionType.NoMatch }
-  | { type: TransactionType.NoResult }
-  | { type: TransactionType.NoTransactionType };
+  | MPesaPaidTo
+  | MPesaDeposit;
+
+export type ParsedMessageFailure =
+  | { type: FailedParsing.NoMatch }
+  | { type: FailedParsing.NoResult }
+  | { type: FailedParsing.NoTransactionType };
