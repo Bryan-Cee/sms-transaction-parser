@@ -6,7 +6,9 @@
     "typescript",
     "sms-parser",
     "sms-transaction-parser",
-    "personal finance"
+    "personal finance",
+    "m-pesa",
+    "M-PESA"
   ],
   "homepage": "https://github.com/Bryan-Cee/sms-transaction-parser#readme",
   "bugs": {
