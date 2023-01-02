@@ -65,11 +65,12 @@ describe('parseMessage', () => {
       reference: 'QLQ21WG6UM',
       date: '26/12/22',
       time: '8:08 AM',
-      withdraw: '1,000.00',
+      amount: '1,000.00',
       agent: '2130791 - IDEAS MERGE LTD Smith shop mbeere',
       balance: '316.26',
       transactionCost: '8.00',
       type: 'M-PESA-WITHDRAW',
+      transactionType: 'Withdraw',
     });
   });
 });
