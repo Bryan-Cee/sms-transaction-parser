@@ -26,7 +26,8 @@ import { parseMessage } from '../src';
 
 describe('parseMessage', () => {
   it('test for a valid m-shwari transfer', () => {
-    const message = 'QLS36WR65R Confirmed.Ksh3,500.00 transferred from M-Shwari account on 28/12/22 at 1:21 PM. M-Shwari balance is Ksh0.50 .M-PESA balance is Ksh4,314.26 .Transaction cost Ksh.0.00';
+    const message =
+      'QLS36WR65R Confirmed.Ksh3,500.00 transferred from M-Shwari account on 28/12/22 at 1:21 PM. M-Shwari balance is Ksh0.50 .M-PESA balance is Ksh4,314.26 .Transaction cost Ksh.0.00';
     expect(parseMessage(message)).toEqual({
       reference: 'QLS36WR65R',
       amount: '3,500.00',
@@ -37,12 +38,13 @@ describe('parseMessage', () => {
       mShwariBalance: '0.50',
       balance: '4,314.26',
       transactionCost: '0.00',
-      type: 'M-SHWARI-WITHDRAW'
+      type: 'M-SHWARI-WITHDRAW',
     });
   });
 
   it('test for an m-pesa sent to recipient', () => {
-    const message = 'QLR45W5W0K Confirmed. Ksh2,528.00 sent to KIPRONO  VINCENT 0725390765 on 27/12/22 at 9:25 PM. New M-PESA balance is Ksh585.26. Transaction cost, Ksh51.00. Amount you can transact within the day is 285,165.00. Get a loan today from M-Shwari click https://mpesaapp.page.link/mshwari';
+    const message =
+      'QLR45W5W0K Confirmed. Ksh2,528.00 sent to KIPRONO  VINCENT 0725390765 on 27/12/22 at 9:25 PM. New M-PESA balance is Ksh585.26. Transaction cost, Ksh51.00. Amount you can transact within the day is 285,165.00. Get a loan today from M-Shwari click https://mpesaapp.page.link/mshwari';
     expect(parseMessage(message)).toEqual({
       reference: 'QLR45W5W0K',
       amount: '2,528.00',
@@ -52,12 +54,13 @@ describe('parseMessage', () => {
       time: '9:25 PM',
       balance: '585.26',
       transactionCost: '51.00',
-      type: 'M-PESA-SENT'
+      type: 'M-PESA-SENT',
     });
   });
 
   it('test for an m-pesa withdrawal from agent', () => {
-    const message = 'QLQ21WG6UM Confirmed.on 26/12/22 at 8:08 AMWithdraw Ksh1,000.00 from 2130791 - IDEAS MERGE LTD Smith shop mbeere New M-PESA balance is Ksh316.26. Transaction cost, Ksh28.00. Amount you can transact within the day is 298,800.00. Pay for goods & Services Today using Lipa Na M-PESA!';
+    const message =
+      'QLQ21WG6UM Confirmed.on 26/12/22 at 8:08 AMWithdraw Ksh1,000.00 from 2130791 - IDEAS MERGE LTD Smith shop mbeere New M-PESA balance is Ksh316.26. Transaction cost, Ksh28.00. Amount you can transact within the day is 298,800.00. Pay for goods & Services Today using Lipa Na M-PESA!';
     expect(parseMessage(message)).toEqual({
       reference: 'QLQ21WG6UM',
       date: '26/12/22',
@@ -66,7 +69,7 @@ describe('parseMessage', () => {
       agent: '2130791 - IDEAS MERGE LTD Smith shop mbeere',
       balance: '316.26',
       transactionCost: '8.00',
-      type: 'M-PESA-WITHDRAW'
+      type: 'M-PESA-WITHDRAW',
     });
   });
 });

@@ -1,20 +1,20 @@
 const enum TransactionType {
-  MPesaSentTo = "M-PESA-SENT",
-  MPesaPaidTo = "M-PESA-PAID",
-  MShwariDeposit = "M-SHWARI-DEPOSIT",
-  MShwariWithdraw = "M-SHWARI-WITHDRAW",
-  MPesaWithdraw = "M-PESA-WITHDRAW",
-  MPesaDeposit = "M-PESA-DEPOSIT",
-  NoMatch = "NO-MATCH",
-  NoTransactionType = "NO-TRANSACTION-TYPE",
-  NoResult = "NO-RESULT"
+  MPesaSentTo = 'M-PESA-SENT',
+  MPesaPaidTo = 'M-PESA-PAID',
+  MShwariDeposit = 'M-SHWARI-DEPOSIT',
+  MShwariWithdraw = 'M-SHWARI-WITHDRAW',
+  MPesaWithdraw = 'M-PESA-WITHDRAW',
+  MPesaDeposit = 'M-PESA-DEPOSIT',
+  NoMatch = 'NO-MATCH',
+  NoTransactionType = 'NO-TRANSACTION-TYPE',
+  NoResult = 'NO-RESULT',
 }
 
 type TransactionTypeWithRegex = {
   type: TransactionType;
   keyPhrase: string;
   regex: RegExp;
-}
+};
 
 export type TransferredMShwari = {
   reference: string;
@@ -26,7 +26,7 @@ export type TransferredMShwari = {
   mShwariBalance: string;
   balance: string;
   transactionCost: string;
-}
+};
 
 export type SentTo = {
   reference: string;
@@ -37,7 +37,7 @@ export type SentTo = {
   time: string;
   balance: string;
   transactionCost: string;
-}
+};
 
 export type PaidTo = {
   reference: string;
@@ -48,7 +48,7 @@ export type PaidTo = {
   time: string;
   balance: string;
   transactionCost: string;
-}
+};
 
 export type Withdraw = {
   reference: string;
@@ -59,10 +59,13 @@ export type Withdraw = {
   agent: string;
   balance: string;
   transactionCost: string;
-}
+};
 
 export type ParsedMessage = TransferredMShwari | SentTo | Withdraw | PaidTo;
-export type FailedParsing = { type: TransactionType.NoMatch } | { type: TransactionType.NoResult } | { type: TransactionType.NoTransactionType };
+export type FailedParsing =
+  | { type: TransactionType.NoMatch }
+  | { type: TransactionType.NoResult }
+  | { type: TransactionType.NoTransactionType };
 
 export const transactionTypeWithPattern: TransactionTypeWithRegex[] = [
   {
@@ -97,17 +100,19 @@ export const transactionTypeWithPattern: TransactionTypeWithRegex[] = [
   },
 ];
 
-export function getTransactionType(message: string): TransactionTypeWithRegex | null {
+export function getTransactionType(
+  message: string
+): TransactionTypeWithRegex | null {
   for (let index = 0; index < transactionTypeWithPattern.length; index++) {
     const transactionWithRegex = transactionTypeWithPattern[index];
     const found = message.indexOf(transactionWithRegex.keyPhrase);
 
     if (found > -1) {
       return transactionWithRegex;
-    };
+    }
   }
   return null;
-};
+}
 
 export function parseMessage(message: string): ParsedMessage | FailedParsing {
   const transactionType = getTransactionType(message);
@@ -123,4 +128,4 @@ export function parseMessage(message: string): ParsedMessage | FailedParsing {
 
   const parsedResult = { ...result, type: transactionType.type };
   return parsedResult;
-};
+}
