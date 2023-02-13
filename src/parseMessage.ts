@@ -5,6 +5,7 @@ import {
   FailedParsing,
   transactionTypeWithPattern,
 } from './types';
+import { dateType, parseDateTimeString, timeType } from './utils';
 
 export function getTransactionType(
   message: string
@@ -27,11 +28,14 @@ export function parseMessage(message: string): ParsedMessage | ParsedMessageFail
   const matched = transactionType.regex.exec(message);
   if (!matched) return { type: FailedParsing.NoMatch };
 
-  const result = matched.groups as ParsedMessage;
-  if (Object.keys(result).length === 0) {
+  const _result = matched.groups as Record<string, string>;
+  if (Object.keys(_result).length === 0) {
     return { type: FailedParsing.NoResult };
   }
 
-  const parsedResult = { ...result, type: transactionType.type } as ParsedMessage;
+  const { date, time, ...rest } = _result;
+  const finalDate = parseDateTimeString(date as dateType, time as timeType)
+  const parsedResult = { ...rest, dateTime: finalDate.valueOf(), type: transactionType.type } as unknown as ParsedMessage;
+
   return parsedResult;
 }
