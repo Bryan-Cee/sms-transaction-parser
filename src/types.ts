@@ -1,11 +1,11 @@
-export const enum TransactionType {
-  MPesaSentTo = 'M-PESA-SENT',
-  MPesaPaidTo = 'M-PESA-PAID',
-  MShwariDeposit = 'M-SHWARI-DEPOSIT',
-  MShwariWithdraw = 'M-SHWARI-WITHDRAW',
-  MPesaWithdraw = 'M-PESA-WITHDRAW',
-  MPesaDeposit = 'M-PESA-DEPOSIT',
-}
+export const TransactionType = {
+  MPesaSentTo: 'M-PESA-SENT',
+  MPesaPaidTo: 'M-PESA-PAID',
+  MShwariDeposit: 'M-SHWARI-DEPOSIT',
+  MShwariWithdraw: 'M-SHWARI-WITHDRAW',
+  MPesaWithdraw: 'M-PESA-WITHDRAW',
+  MPesaDeposit: 'M-PESA-DEPOSIT',
+} as const;
 
 export const enum FailedParsing {
   NoMatch = 'NO-MATCH',
@@ -14,7 +14,7 @@ export const enum FailedParsing {
 }
 
 export type TransactionTypeWithRegex = {
-  type: TransactionType;
+  type: typeof TransactionType[keyof typeof TransactionType];
   keyPhrase: string;
   regex: RegExp;
 };
@@ -29,7 +29,7 @@ export type MShwariTransferredToMPesa = {
   mShwariBalance: string;
   balance: string;
   transactionCost: string;
-  type: TransactionType;
+  type: typeof TransactionType;
 };
 
 export type MPeseSentTo = {
@@ -41,7 +41,7 @@ export type MPeseSentTo = {
   time: string;
   balance: string;
   transactionCost: string;
-  type: TransactionType.MPesaSentTo;
+  type: typeof TransactionType.MPesaSentTo;
 };
 
 export type MPesaPaidTo = {
@@ -53,7 +53,7 @@ export type MPesaPaidTo = {
   time: string;
   balance: string;
   transactionCost: string;
-  type: TransactionType.MPesaPaidTo;
+  type: typeof TransactionType.MPesaPaidTo;
 };
 
 export type MPesaWithdraw = {
@@ -65,7 +65,7 @@ export type MPesaWithdraw = {
   agent: string;
   balance: string;
   transactionCost: string;
-  type: TransactionType.MPesaWithdraw;
+  type: typeof TransactionType.MPesaWithdraw;
 };
 
 export type MPesaDeposit = {
@@ -76,7 +76,7 @@ export type MPesaDeposit = {
   amount: string;
   balance: string;
   sender: string;
-  type: TransactionType.MPesaDeposit;
+  type: typeof TransactionType.MPesaDeposit;
 };
 
 export type ParsedMessage =
