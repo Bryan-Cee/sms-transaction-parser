@@ -33,14 +33,14 @@ export function parseMessage(message: string): ParsedMessage | ParsedMessageFail
     return { type: FailedParsing.NoResult };
   }
 
-  const { date, time, balance: _b, amount: _a, transactionCost: _tC, ...rest } = _result;
+  const { date, time, balance: _b, amount: _a, ...rest } = _result;
   const finalDate = parseDateTimeString(date as dateType, time as timeType);
 
-  const balance = parseAmount(_b);
-  const amount = parseAmount(_a);
-  const transactionCost = parseAmount(_tC);
+  let balance = parseAmount(_b);
+  let amount = parseAmount(_a);
 
-  const parsedResult = { ...rest, balance, amount, transactionCost, dateTime: finalDate.valueOf(), type: transactionType.type } as unknown as ParsedMessage;
-
+  const parsedResult = {
+    ...rest, balance, amount, dateTime: finalDate.valueOf(), type: transactionType.type
+  } as unknown as ParsedMessage;
   return parsedResult;
 }

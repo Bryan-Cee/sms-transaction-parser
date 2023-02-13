@@ -60,7 +60,7 @@ export type MShwariTransferredToMPesa = {
   dateTime: number;
   mShwariBalance: string;
   balance: number;
-  transactionCost: number;
+  transactionCost: string;
   type: typeof TransactionType;
 };
 
@@ -71,7 +71,7 @@ export type MPeseSentTo = {
   recipient: string;
   dateTime: number;
   balance: number;
-  transactionCost: number;
+  transactionCost: string;
   type: typeof TransactionType.MPesaSentTo;
 };
 
@@ -82,7 +82,7 @@ export type MPesaPaidTo = {
   recipient: string;
   dateTime: number;
   balance: number;
-  transactionCost: number;
+  transactionCost: string;
   type: typeof TransactionType.MPesaPaidTo;
 };
 
@@ -93,7 +93,7 @@ export type MPesaWithdraw = {
   amount: number;
   agent: string;
   balance: number;
-  transactionCost: number;
+  transactionCost: string;
   type: typeof TransactionType.MPesaWithdraw;
 };
 
