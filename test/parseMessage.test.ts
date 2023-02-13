@@ -30,13 +30,13 @@ describe('parseMessage', () => {
       'QLS36WR65R Confirmed.Ksh3,500.00 transferred from M-Shwari account on 28/12/22 at 1:21 PM. M-Shwari balance is Ksh0.50 .M-PESA balance is Ksh4,314.26 .Transaction cost Ksh.0.00';
     expect(parseMessage(message)).toEqual({
       reference: 'QLS36WR65R',
-      amount: '3,500.00',
+      amount: 3500,
       transactionType: 'transferred',
       account: 'M-Shwari account',
       dateTime: 1674901260000,
       mShwariBalance: '0.50',
-      balance: '4,314.26',
-      transactionCost: '0.00',
+      balance: 4314.26,
+      transactionCost: 0,
       type: 'M-SHWARI-WITHDRAW',
     });
   });
@@ -46,12 +46,12 @@ describe('parseMessage', () => {
       'QLR45W5W0K Confirmed. Ksh2,528.00 sent to KIPRONO  VINCENT 0725390765 on 27/12/22 at 9:25 PM. New M-PESA balance is Ksh585.26. Transaction cost, Ksh51.00. Amount you can transact within the day is 285,165.00. Get a loan today from M-Shwari click https://mpesaapp.page.link/mshwari';
     expect(parseMessage(message)).toEqual({
       reference: 'QLR45W5W0K',
-      amount: '2,528.00',
+      amount: 2528,
       transactionType: 'sent',
       recipient: 'KIPRONO  VINCENT 0725390765',
       dateTime: 1674843900000,
-      balance: '585.26',
-      transactionCost: '51.00',
+      balance: 585.26,
+      transactionCost: 51,
       type: 'M-PESA-SENT',
     });
   });
@@ -62,10 +62,10 @@ describe('parseMessage', () => {
     expect(parseMessage(message)).toEqual({
       reference: 'QLQ21WG6UM',
       dateTime: 1674709680000,
-      amount: '1,000.00',
+      amount: 1000,
       agent: '2130791 - IDEAS MERGE LTD Smith shop mbeere',
-      balance: '316.26',
-      transactionCost: '8.00',
+      balance: 316.26,
+      transactionCost: 8.00,
       type: 'M-PESA-WITHDRAW',
       transactionType: 'Withdraw',
     });

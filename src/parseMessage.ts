@@ -5,7 +5,7 @@ import {
   FailedParsing,
   transactionTypeWithPattern,
 } from './types';
-import { dateType, parseDateTimeString, timeType } from './utils';
+import { dateType, parseAmount, parseDateTimeString, timeType } from './utils';
 
 export function getTransactionType(
   message: string
@@ -33,9 +33,14 @@ export function parseMessage(message: string): ParsedMessage | ParsedMessageFail
     return { type: FailedParsing.NoResult };
   }
 
-  const { date, time, ...rest } = _result;
-  const finalDate = parseDateTimeString(date as dateType, time as timeType)
-  const parsedResult = { ...rest, dateTime: finalDate.valueOf(), type: transactionType.type } as unknown as ParsedMessage;
+  const { date, time, balance: _b, amount: _a, transactionCost: _tC, ...rest } = _result;
+  const finalDate = parseDateTimeString(date as dateType, time as timeType);
+
+  const balance = parseAmount(_b);
+  const amount = parseAmount(_a);
+  const transactionCost = parseAmount(_tC);
+
+  const parsedResult = { ...rest, balance, amount, transactionCost, dateTime: finalDate.valueOf(), type: transactionType.type } as unknown as ParsedMessage;
 
   return parsedResult;
 }

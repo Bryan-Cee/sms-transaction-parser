@@ -23,3 +23,8 @@ export const parseDateTimeString = (date: dateType, time: timeType) => {
   finalDate.setMinutes(minutes);
   return finalDate.valueOf();
 }
+
+export const parseAmount = (numberString: string) => {
+  const amount = parseFloat(numberString.replace(/,/g, ''));
+  return amount
+};

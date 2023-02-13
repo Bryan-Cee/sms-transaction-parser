@@ -54,55 +54,55 @@ export const transactionTypeWithPattern: TransactionTypeWithRegex[] = [
 
 export type MShwariTransferredToMPesa = {
   reference: string;
-  amount: string;
+  amount: number;
   transactionType: 'transferred';
   account: string;
-  dateTime: string;
+  dateTime: number;
   mShwariBalance: string;
-  balance: string;
-  transactionCost: string;
+  balance: number;
+  transactionCost: number;
   type: typeof TransactionType;
 };
 
 export type MPeseSentTo = {
   reference: string;
-  amount: string;
+  amount: number;
   transactionType: 'sent';
   recipient: string;
-  dateTime: string;
-  balance: string;
-  transactionCost: string;
+  dateTime: number;
+  balance: number;
+  transactionCost: number;
   type: typeof TransactionType.MPesaSentTo;
 };
 
 export type MPesaPaidTo = {
   reference: string;
-  amount: string;
+  amount: number;
   transactionType: 'paid';
   recipient: string;
-  dateTime: string;
-  balance: string;
-  transactionCost: string;
+  dateTime: number;
+  balance: number;
+  transactionCost: number;
   type: typeof TransactionType.MPesaPaidTo;
 };
 
 export type MPesaWithdraw = {
   reference: string;
-  dateTime: string;
+  dateTime: number;
   transactionType: 'Withdraw';
-  amount: string;
+  amount: number;
   agent: string;
-  balance: string;
-  transactionCost: string;
+  balance: number;
+  transactionCost: number;
   type: typeof TransactionType.MPesaWithdraw;
 };
 
 export type MPesaDeposit = {
   reference: string;
-  dateTime: string;
+  dateTime: number;
   transactionType: 'received';
-  amount: string;
-  balance: string;
+  amount: number;
+  balance: number;
   sender: string;
   type: typeof TransactionType.MPesaDeposit;
 };
