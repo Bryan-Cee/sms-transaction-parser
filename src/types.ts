@@ -7,11 +7,11 @@ export const TransactionType = {
   MPesaDeposit: 'M-PESA-DEPOSIT',
 } as const;
 
-export const enum FailedParsing {
-  NoMatch = 'NO-MATCH',
-  NoTransactionType = 'NO-TRANSACTION-TYPE',
-  NoResult = 'NO-RESULT',
-}
+export const FailedParsing = {
+  NoMatch: 'NO-MATCH',
+  NoTransactionType: 'NO-TRANSACTION-TYPE',
+  NoResult: 'NO-RESULT',
+} as const
 
 export type TransactionTypeWithRegex = {
   type: typeof TransactionType[keyof typeof TransactionType];
@@ -87,6 +87,6 @@ export type ParsedMessage =
   | MPesaDeposit;
 
 export type ParsedMessageFailure =
-  | { type: FailedParsing.NoMatch }
-  | { type: FailedParsing.NoResult }
-  | { type: FailedParsing.NoTransactionType };
+  | { type: typeof FailedParsing.NoMatch }
+  | { type: typeof FailedParsing.NoResult }
+  | { type: typeof FailedParsing.NoTransactionType };
