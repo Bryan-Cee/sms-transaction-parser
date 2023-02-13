@@ -1,6 +1,6 @@
 {
   "name": "sms-transaction-parser",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Parse SMS for transactions to extract relevant information.",
   "keywords": [
     "typescript",
